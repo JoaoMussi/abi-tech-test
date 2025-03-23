@@ -9,13 +9,13 @@ using Backend.Models;
 
 namespace Backend.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly EmployeeContext _context;
+        private readonly EmployeeManagementContext _context;
 
-        public EmployeeController(EmployeeContext context)
+        public EmployeeController(EmployeeManagementContext context)
         {
             _context = context;
         }
