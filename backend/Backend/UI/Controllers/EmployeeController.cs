@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Backend.Core.Entities;
-using Backend.UI.Commands;
+using Backend.Application.Commands;
 using Backend.Core.Interfaces;
 
 namespace Backend.UI.Controllers

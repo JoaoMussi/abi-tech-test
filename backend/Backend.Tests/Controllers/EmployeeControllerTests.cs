@@ -6,7 +6,7 @@ using Backend.UI.Controllers;
 using Backend.Core.Entities;
 using Backend.Core.Interfaces;
 using Backend.Infrastructure.Data;
-using Backend.UI.Commands;
+using Backend.Application.Commands;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Moq;

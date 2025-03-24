@@ -1,4 +1,4 @@
-namespace Backend.UI.Commands
+namespace Backend.Application.Commands
 {
     public class EditEmployeeCommand
     {

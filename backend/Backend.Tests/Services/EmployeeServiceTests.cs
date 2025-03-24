@@ -1,7 +1,7 @@
 using Backend.Application.Services;
 using Backend.Core.Entities;
 using Backend.Core.Interfaces;
-using Backend.UI.Commands;
+using Backend.Application.Commands;
 using Moq;
 using System;
 using System.Collections.Generic;

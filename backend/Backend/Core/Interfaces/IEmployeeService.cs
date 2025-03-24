@@ -1,5 +1,5 @@
 using Backend.Core.Entities;
-using Backend.UI.Commands;
+using Backend.Application.Commands;
 
 namespace Backend.Core.Interfaces
 {

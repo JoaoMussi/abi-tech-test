@@ -1,6 +1,6 @@
 using Backend.Core.Interfaces;
 using Backend.Core.Entities;
-using Backend.UI.Commands;
+using Backend.Application.Commands;
 
 namespace Backend.Application.Services
 {
