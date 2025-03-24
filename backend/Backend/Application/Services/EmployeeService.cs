@@ -4,7 +4,7 @@ using Backend.UI.Commands;
 
 namespace Backend.Application.Services
 {
-    public class EmployeeService
+    public class EmployeeService : IEmployeeService
     {
         private readonly IEmployeeRepository _employeeRepository;
 
@@ -31,7 +31,7 @@ namespace Backend.Application.Services
                 LastName = employeeCommand.LastName,
                 Email = employeeCommand.Email,
                 DocumentCode = employeeCommand.DocumentCode,
-                Manager = employeeCommand.Manager,
+                ManagerName = employeeCommand.ManagerName,
                 BirthDate = employeeCommand.BirthDate,
             };
 
@@ -48,7 +48,7 @@ namespace Backend.Application.Services
                 employee.LastName = employeeCommand.LastName;
                 employee.Email = employeeCommand.Email;
                 employee.DocumentCode = employeeCommand.DocumentCode;
-                employee.Manager = employeeCommand.Manager;
+                employee.ManagerName = employeeCommand.ManagerName;
                 employee.BirthDate = employeeCommand.BirthDate;
 
                 await _employeeRepository.UpdateEmployee(employee);

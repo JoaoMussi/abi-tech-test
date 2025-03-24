@@ -1,18 +1,19 @@
 using Microsoft.EntityFrameworkCore;
-using Backend.Models;
-using Microsoft.CodeAnalysis.Scripting.Hosting;
+using Backend.Infrastructure.Data;
+using Backend.Core.Interfaces;
+using Backend.Infrastructure.Repositories;
+using Backend.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
 builder.Configuration.AddEnvironmentVariables();
-builder.WebHost.ConfigureKestrel(serverOptions =>
-{
-    serverOptions.ListenAnyIP(5058);
-});
 var connectionString =
     builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<EmployeeManagementContext>(opt => opt.UseNpgsql(connectionString));
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
