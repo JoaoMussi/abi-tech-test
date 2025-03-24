@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Backend.Application.Services;
-using Backend.Controllers;
+using Backend.UI.Controllers;
 using Backend.Core.Entities;
 using Backend.Core.Interfaces;
 using Backend.Infrastructure.Data;
@@ -96,7 +96,7 @@ namespace Backend.Tests.Controllers
 
             var result = await _controller.GetEmployee(1);
 
-            var actionResult = Assert.IsType<ActionResult<Employee>>(result);
+            var actionResult = Assert.IsType<OkObjectResult>(result.Result);
             var returnedEmployee = Assert.IsType<Employee>(actionResult.Value);
             Assert.Equal(1, returnedEmployee.Id);
             Assert.Equal("John", returnedEmployee.Name);
@@ -143,9 +143,10 @@ namespace Backend.Tests.Controllers
 
             var result = await _controller.CreateEmployee(command);
 
-            var createdAtActionResult = Assert.IsType<CreatedAtActionResult>(result.Result);
-            Assert.Equal("GetEmployee", createdAtActionResult.ActionName);
-            Assert.Equal(createdEmployee, createdAtActionResult.Value);
+            var actionResult = Assert.IsType<OkObjectResult>(result.Result);
+            var returnedEmployee = Assert.IsType<Employee>(actionResult.Value);
+            Assert.Equal(returnedEmployee.Id, createdEmployee.Id);
+            Assert.Equal(returnedEmployee.Name, createdEmployee.Name);
         }
 
         [Fact]

@@ -32,7 +32,7 @@ namespace Backend.UI.Controllers
                 return NotFound();
             }
 
-            return employee;
+            return Ok(employee);
         }
 
         [HttpPost]
