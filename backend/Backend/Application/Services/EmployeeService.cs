@@ -32,7 +32,7 @@ namespace Backend.Application.Services
                 Email = employeeCommand.Email,
                 DocumentCode = employeeCommand.DocumentCode,
                 ManagerName = employeeCommand.ManagerName,
-                BirthDate = employeeCommand.BirthDate,
+                BirthDate = DateOnly.FromDateTime(employeeCommand.BirthDate),
             };
 
             return await _employeeRepository.CreateEmployee(employee);
@@ -49,7 +49,7 @@ namespace Backend.Application.Services
                 employee.Email = employeeCommand.Email;
                 employee.DocumentCode = employeeCommand.DocumentCode;
                 employee.ManagerName = employeeCommand.ManagerName;
-                employee.BirthDate = employeeCommand.BirthDate;
+                employee.BirthDate = DateOnly.FromDateTime(employeeCommand.BirthDate);
 
                 await _employeeRepository.UpdateEmployee(employee);
             }

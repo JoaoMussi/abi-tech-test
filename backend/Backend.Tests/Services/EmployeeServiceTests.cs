@@ -103,7 +103,7 @@ namespace Backend.Tests.Application.Services
                 LastName = "Doe",
                 Email = "john.doe@example.com",
                 DocumentCode = "DOC123",
-                BirthDate = new DateOnly(1990, 1, 1)
+                BirthDate = new DateTime(1990, 1, 1)
             };
 
             var expectedEmployee = new Employee
@@ -113,7 +113,7 @@ namespace Backend.Tests.Application.Services
                 LastName = command.LastName,
                 Email = command.Email,
                 DocumentCode = command.DocumentCode,
-                BirthDate = command.BirthDate
+                BirthDate = DateOnly.FromDateTime(command.BirthDate)
             };
 
             _mockRepository.Setup(repo => repo.CreateEmployee(It.IsAny<Employee>()))
@@ -131,7 +131,7 @@ namespace Backend.Tests.Application.Services
             Assert.Equal(command.LastName, result.LastName);
             Assert.Equal(command.Email, result.Email);
             Assert.Equal(command.DocumentCode, result.DocumentCode);
-            Assert.Equal(command.BirthDate, result.BirthDate);
+            Assert.Equal(DateOnly.FromDateTime(command.BirthDate), result.BirthDate);
 
             _mockRepository.Verify(repo => repo.CreateEmployee(
                 It.Is<Employee>(e =>
@@ -139,7 +139,7 @@ namespace Backend.Tests.Application.Services
                     e.LastName == command.LastName &&
                     e.Email == command.Email &&
                     e.DocumentCode == command.DocumentCode &&
-                    e.BirthDate == command.BirthDate
+                    e.BirthDate == DateOnly.FromDateTime(command.BirthDate)
                 )),
                 Times.Once);
         }
@@ -164,7 +164,7 @@ namespace Backend.Tests.Application.Services
                 LastName = "Johnson",
                 Email = "johnny.johnson@example.com",
                 DocumentCode = "DOC789",
-                BirthDate = new DateOnly(1990, 5, 10)
+                BirthDate = new DateTime(1990, 5, 10)
             };
 
             _mockRepository.Setup(repo => repo.GetEmployeeById(employeeId))
@@ -180,7 +180,7 @@ namespace Backend.Tests.Application.Services
                     e.LastName == command.LastName &&
                     e.Email == command.Email &&
                     e.DocumentCode == command.DocumentCode &&
-                    e.BirthDate == command.BirthDate
+                    e.BirthDate == DateOnly.FromDateTime(command.BirthDate)
                 )),
                 Times.Once);
         }
@@ -195,7 +195,7 @@ namespace Backend.Tests.Application.Services
                 LastName = "Johnson",
                 Email = "johnny.johnson@example.com",
                 DocumentCode = "DOC789",
-                BirthDate = new DateOnly(1990, 1, 1),
+                BirthDate = new DateTime(1990, 1, 1),
             };
 
             _mockRepository.Setup(repo => repo.GetEmployeeById(nonExistentId))

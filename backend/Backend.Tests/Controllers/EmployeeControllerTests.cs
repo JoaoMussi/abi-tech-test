@@ -124,7 +124,7 @@ namespace Backend.Tests.Controllers
                 LastName = "Doe",
                 Email = "john.doe@example.com",
                 DocumentCode = "DOC123",
-                BirthDate = new DateOnly(1990, 1, 1)
+                BirthDate = new DateTime(1990, 1, 1)
             };
 
             var createdEmployee = new Employee
@@ -158,7 +158,7 @@ namespace Backend.Tests.Controllers
                 LastName = "Updated",
                 Email = "john.updated@example.com",
                 DocumentCode = "DOC987",
-                BirthDate = new DateOnly(1990, 1, 1)
+                BirthDate = new DateTime(1990, 1, 1)
             };
 
             _mockEmployeeService
