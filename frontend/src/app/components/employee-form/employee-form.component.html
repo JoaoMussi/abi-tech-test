@@ -1,0 +1,164 @@
+<form [formGroup]="employeeForm">
+  <div class="flex gap-4 mb-5">
+    <div class="items-center gap-4">
+      <label for="name" class="font-semibold">Name</label>
+      <input
+        pInputText
+        id="name"
+        formControlName="name"
+        fluid
+        autocomplete="off"
+      />
+      <p-message
+        *ngIf="
+          employeeForm.controls.name.touched &&
+          employeeForm.controls.name.getError('required')
+        "
+        severity="error"
+        variant="simple"
+        size="small"
+      >
+        Name is required
+      </p-message>
+    </div>
+    <div class="items-center gap-4">
+      <label for="lastName" class="font-semibold">Last Name</label>
+      <input
+        pInputText
+        id="lastName"
+        formControlName="lastName"
+        fluid
+        autocomplete="off"
+      />
+      <p-message
+        *ngIf="
+          employeeForm.controls.lastName.touched &&
+          employeeForm.controls.lastName.getError('required')
+        "
+        severity="error"
+        variant="simple"
+        size="small"
+      >
+        Last name is required
+      </p-message>
+    </div>
+  </div>
+
+  <div class="items-center gap-4 mb-5">
+    <label for="email" class="font-semibold">Email</label>
+    <input
+      pInputText
+      fluid
+      id="email"
+      formControlName="email"
+      autocomplete="off"
+    />
+    <p-message
+      *ngIf="
+        employeeForm.controls.email.touched &&
+        employeeForm.controls.email.getError('required')
+      "
+      severity="error"
+      variant="simple"
+      size="small"
+    >
+      Email is required
+    </p-message>
+  </div>
+
+  <div class="items-center gap-4 mb-5">
+    <label for="documentCode" class="font-semibold">Document Code</label>
+    <input
+      pInputText
+      fluid
+      id="documentCode"
+      formControlName="documentCode"
+      autocomplete="off"
+    />
+    <p-message
+      *ngIf="
+        employeeForm.controls.documentCode.touched &&
+        employeeForm.controls.documentCode.getError('required')
+      "
+      severity="error"
+      variant="simple"
+      size="small"
+    >
+      Document code is required
+    </p-message>
+  </div>
+
+  <div class="items-center gap-4 mb-5">
+    <label for="role" class="font-semibold">Role</label>
+    <input
+      pInputText
+      fluid
+      id="role"
+      formControlName="role"
+      autocomplete="off"
+    />
+    <p-message
+      *ngIf="
+        employeeForm.controls.role.touched &&
+        employeeForm.controls.role.getError('required')
+      "
+      severity="error"
+      variant="simple"
+      size="small"
+    >
+      Role is required
+    </p-message>
+  </div>
+
+  <div class="items-center gap-4 mb-5">
+    <label for="birthDate" class="font-semibold">Birth Date</label>
+    <p-datepicker inputId="birthDate" formControlName="birthDate" fluid />
+    <p-message
+      *ngIf="
+        employeeForm.controls.birthDate.touched &&
+        employeeForm.controls.birthDate.getError('required')
+      "
+      severity="error"
+      variant="simple"
+      size="small"
+    >
+      Birth date is required
+    </p-message>
+  </div>
+
+  <div class="items-center gap-4 mb-5">
+    <div class="flex gap-2 items-center">
+      <label for="managerName" class="font-semibold">Manager Name</label>
+      <p class="text-xs font-light">Optional</p>
+    </div>
+    <input
+      pInputText
+      id="managerName"
+      formControlName="managerName"
+      autocomplete="off"
+      fluid
+    />
+  </div>
+
+  <div class="items-center flex-auto gap-4 mb-5">
+    <label for="number" class="font-semibold">Number</label>
+    <input
+      pInputText
+      id="number"
+      formControlName="number"
+      autocomplete="off"
+      fluid
+    />
+    <p-message
+      *ngIf="
+        employeeForm.controls.number.touched &&
+        employeeForm.controls.number.getError('required')
+      "
+      severity="error"
+      variant="simple"
+      size="small"
+    >
+      Number is required
+    </p-message>
+  </div>
+</form>

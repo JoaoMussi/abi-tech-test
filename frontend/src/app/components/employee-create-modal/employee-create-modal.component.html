@@ -1,0 +1,28 @@
+<p-dialog
+  header="Create Profile"
+  [modal]="true"
+  [visible]="visible"
+  (visibleChange)="visibleChange.emit(false)"
+  [style]="{ width: '30rem' }"
+>
+  <app-employee-form
+    [employeeForm]="employeeForm"
+    [visible]="visible"
+    (visibleChange)="visibleChange.emit(false)"
+  ></app-employee-form>
+
+  <div class="flex justify-end gap-2">
+    <p-button
+      label="Cancel"
+      aria-label="Cancel"
+      severity="secondary"
+      (click)="visibleChange.emit(false)"
+    />
+    <p-button
+      label="Save"
+      aria-label="Save"
+      [loading]="loading()"
+      (click)="saveEmployee()"
+    />
+  </div>
+</p-dialog>
