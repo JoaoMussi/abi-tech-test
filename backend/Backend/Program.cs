@@ -33,6 +33,7 @@ if (app.Environment.IsDevelopment())
     {
         options.DocumentPath = "/openapi/v1.json";
     });
+    app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod());
 }
 
 app.UseAuthorization();
