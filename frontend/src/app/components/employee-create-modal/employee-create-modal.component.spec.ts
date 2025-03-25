@@ -69,6 +69,7 @@ describe('EmployeeCreateModalComponent', () => {
     expect(component.loading.set).not.toHaveBeenCalled();
     expect(service.createEmployee).not.toHaveBeenCalled();
   });
+  
   it('should enable button on error', fakeAsync(() => {
     jest.spyOn(component.loading, 'set');
     jest
