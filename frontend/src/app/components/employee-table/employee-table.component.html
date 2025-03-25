@@ -38,12 +38,22 @@
           <p-button
             aria-label="Edit employee"
             icon="pi pi-pencil"
-            (click)="updateEmployee.emit(employee.id!)"
+            (click)="updateEmployee(employee.id!)"
           ></p-button>
         </td>
       </tr>
     </ng-template>
   </p-table>
 </div>
+
+<ng-container *ngIf="showEditModal()">
+  <app-employee-edit-modal
+    [employeeId]="updateEmployeeId!"
+    [visible]="!!updateEmployeeId"
+    (visibleChange)="updateEmployeeId = undefined"
+    (employeeUpdated)="employeeUpdated.emit()"
+  ></app-employee-edit-modal>
+</ng-container>
+
 <p-toast position="bottom-right" />
 <p-confirmdialog />

@@ -7,10 +7,19 @@ import { take } from 'rxjs';
 import { Employee } from '../../interfaces/employee.interface';
 import { EmployeesService } from '../../services/employees.service';
 import { ToastModule } from 'primeng/toast';
+import { EmployeeEditModalComponent } from '../employee-edit-modal/employee-edit-modal.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-employee-table',
-  imports: [TableModule, ButtonModule, ConfirmDialog, ToastModule],
+  imports: [
+    CommonModule,
+    TableModule,
+    ButtonModule,
+    ConfirmDialog,
+    ToastModule,
+    EmployeeEditModalComponent,
+  ],
   providers: [ConfirmationService, MessageService],
   templateUrl: './employee-table.component.html',
   styleUrl: './employee-table.component.scss',
@@ -18,9 +27,11 @@ import { ToastModule } from 'primeng/toast';
 export class EmployeeTableComponent {
   @Input() employees!: Employee[];
   @Output() employeeDeleted: EventEmitter<void> = new EventEmitter<void>();
-  @Output() updateEmployee: EventEmitter<number> = new EventEmitter<number>();
+  @Output() employeeUpdated: EventEmitter<void> = new EventEmitter<void>();
 
   loadingDelete = signal(false);
+  showEditModal = signal(false);
+  updateEmployeeId: number | undefined;
 
   constructor(
     private confirmationService: ConfirmationService,
@@ -48,6 +59,11 @@ export class EmployeeTableComponent {
         this.deleteConfirmed(employeeId);
       },
     });
+  }
+
+  updateEmployee(employeeId: number): void {
+    this.updateEmployeeId = employeeId;
+    this.showEditModal.set(true);
   }
 
   private deleteConfirmed(employeeId: number): void {
