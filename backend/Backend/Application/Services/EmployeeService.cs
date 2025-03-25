@@ -1,6 +1,7 @@
 using Backend.Core.Interfaces;
 using Backend.Core.Entities;
 using Backend.Application.Commands;
+using Backend.Application.Dto;
 
 namespace Backend.Application.Services
 {
@@ -18,9 +19,22 @@ namespace Backend.Application.Services
             return await _employeeRepository.GetEmployees();
         }
 
-        public async Task<Employee?> GetEmployeeById(long id)
+        public async Task<EmployeeDto?> GetEmployeeById(long id)
         {
-            return await _employeeRepository.GetEmployeeById(id);
+            var employee = await _employeeRepository.GetEmployeeById(id);
+
+            return employee == null ? null : new EmployeeDto
+            {
+                Id = employee.Id,
+                Name = employee.Name,
+                LastName = employee.LastName,
+                Email = employee.Email,
+                DocumentCode = employee.DocumentCode,
+                Role = employee.Role,
+                ManagerName = employee.ManagerName,
+                Phone = employee.Phone,
+                BirthDate = new DateTime(employee.BirthDate, new TimeOnly()),
+            };
         }
 
         public async Task<Employee> CreateEmployee(CreateEmployeeCommand employeeCommand)
@@ -31,7 +45,9 @@ namespace Backend.Application.Services
                 LastName = employeeCommand.LastName,
                 Email = employeeCommand.Email,
                 DocumentCode = employeeCommand.DocumentCode,
+                Role = employeeCommand.Role,
                 ManagerName = employeeCommand.ManagerName,
+                Phone = employeeCommand.Phone,
                 BirthDate = DateOnly.FromDateTime(employeeCommand.BirthDate),
             };
 

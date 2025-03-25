@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Backend.Application.Services;
+using Backend.Application.Dto;
 using Backend.UI.Controllers;
 using Backend.Core.Entities;
 using Backend.Core.Interfaces;
@@ -37,7 +38,9 @@ namespace Backend.Tests.Controllers
                     LastName = "Doe",
                     Email = "john.doe@example.com",
                     DocumentCode = "DOC123",
-                    BirthDate = new DateOnly(1990, 1, 1)
+                    Role = "Manager",
+                    BirthDate = new DateOnly(1990, 1, 1),
+                    Phone = "(99) 99999-9999",
                 },
                 new Employee
                 {
@@ -46,7 +49,9 @@ namespace Backend.Tests.Controllers
                     LastName = "Smith",
                     Email = "jane.smith@example.com",
                     DocumentCode = "DOC456",
-                    BirthDate = new DateOnly(1992, 5, 15)
+                    Role = "Manager",
+                    BirthDate = new DateOnly(1992, 5, 15),
+                    Phone = "(99) 99999-9999",
                 }
             };
 
@@ -80,14 +85,16 @@ namespace Backend.Tests.Controllers
         [Fact]
         public async Task GetEmployee_ReturnsEmployee_WhenEmployeeExists()
         {
-            var employee = new Employee
+            var employee = new EmployeeDto
             {
                 Id = 1,
                 Name = "John",
                 LastName = "Doe",
                 Email = "john.doe@example.com",
                 DocumentCode = "DOC123",
-                BirthDate = new DateOnly(1990, 1, 1)
+                Role = "Manager",
+                BirthDate = new DateTime(1990, 1, 1),
+                Phone = "(99) 99999-9999",
             };
 
             _mockEmployeeService
@@ -97,7 +104,7 @@ namespace Backend.Tests.Controllers
             var result = await _controller.GetEmployee(1);
 
             var actionResult = Assert.IsType<OkObjectResult>(result.Result);
-            var returnedEmployee = Assert.IsType<Employee>(actionResult.Value);
+            var returnedEmployee = Assert.IsType<EmployeeDto>(actionResult.Value);
             Assert.Equal(1, returnedEmployee.Id);
             Assert.Equal("John", returnedEmployee.Name);
             Assert.Equal("Doe", returnedEmployee.LastName);
@@ -108,7 +115,7 @@ namespace Backend.Tests.Controllers
         {
             _mockEmployeeService
                 .Setup(service => service.GetEmployeeById(999))
-                .ReturnsAsync((Employee)null);
+                .ReturnsAsync((EmployeeDto)null);
 
             var result = await _controller.GetEmployee(999);
 
@@ -124,7 +131,9 @@ namespace Backend.Tests.Controllers
                 LastName = "Doe",
                 Email = "john.doe@example.com",
                 DocumentCode = "DOC123",
-                BirthDate = new DateTime(1990, 1, 1)
+                Role = "Manager",
+                BirthDate = new DateTime(1990, 1, 1),
+                Phone = "(99) 99999-9999",
             };
 
             var createdEmployee = new Employee
@@ -134,7 +143,9 @@ namespace Backend.Tests.Controllers
                 LastName = "Doe",
                 Email = "john.doe@example.com",
                 DocumentCode = "DOC456",
-                BirthDate = new DateOnly(1991, 5, 10)
+                Role = "Manager",
+                BirthDate = new DateOnly(1991, 5, 10),
+                Phone = "(99) 99999-9999",
             };
 
             _mockEmployeeService
@@ -154,11 +165,14 @@ namespace Backend.Tests.Controllers
         {
             var command = new EditEmployeeCommand
             {
+                Id = 1,
                 Name = "John",
                 LastName = "Updated",
                 Email = "john.updated@example.com",
                 DocumentCode = "DOC987",
-                BirthDate = new DateTime(1990, 1, 1)
+                Role = "Manager",
+                BirthDate = new DateTime(1990, 1, 1),
+                Phone = "(99) 99999-9999",
             };
 
             _mockEmployeeService

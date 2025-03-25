@@ -1,15 +1,15 @@
-namespace Backend.Core.Entities
+namespace Backend.Application.Dto
 {
-    public class Employee
+    public class EmployeeDto
     {
-        public long Id { get; set; }
+        public required long Id { get; set; }
         public required string Name { get; set; }
         public required string LastName { get; set; }
         public required string Email { get; set; }
         public required string DocumentCode { get; set; }
         public required string Role { get; set; }
         public string? ManagerName { get; set; }
-        public required DateOnly BirthDate { get; set; }
+        public required DateTime BirthDate { get; set; }
         public required string Phone { get; set; }
     }
 }

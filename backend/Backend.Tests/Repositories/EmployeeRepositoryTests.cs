@@ -23,14 +23,17 @@ namespace Backend.Tests.Repositories
             {
                 for (int i = 1; i <= 10; i++)
                 {
+                    var phoneNumber = i == 10 ? 0 : i;
                     context.Employees.Add(new Employee
                     {
                         Id = i,
                         Name = $"FirstName{i}",
                         LastName = $"LastName{i}",
                         Email = $"employee{i}@example.com",
+                        Role = "Manager",
                         DocumentCode = $"Document{i % 3 + 1}",
                         BirthDate = DateOnly.FromDateTime(DateTime.Now.AddMonths(-i)),
+                        Phone = $"(99) 99999-999{phoneNumber}",
                     });
                 }
 
@@ -83,11 +86,14 @@ namespace Backend.Tests.Repositories
             var repository = new EmployeeRepository(context);
             var newEmployee = new Employee
             {
+                Id = 99,
                 Name = "Another",
                 LastName = "Name",
                 Email = "anothername@example.com",
                 DocumentCode = "123.456.789.00",
+                Role = "Manager",
                 BirthDate = DateOnly.FromDateTime(DateTime.Now),
+                Phone = "(99) 99999-9999",
             };
 
             var result = await repository.CreateEmployee(newEmployee);
@@ -123,7 +129,7 @@ namespace Backend.Tests.Repositories
             var context = await GetDbContext();
             var repository = new EmployeeRepository(context);
             long employeeId = 5;
-            
+
             await repository.DeleteEmployee(employeeId);
 
             var deletedEmployee = await context.Employees.FindAsync(employeeId);
