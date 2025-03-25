@@ -14,6 +14,9 @@ namespace Backend.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Employee>()
+                .HasIndex(e => e.Email)
+                .IsUnique();
+            modelBuilder.Entity<Employee>()
                 .HasIndex(e => e.DocumentCode)
                 .IsUnique();
         }

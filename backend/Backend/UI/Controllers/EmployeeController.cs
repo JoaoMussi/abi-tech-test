@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Backend.Core.Entities;
 using Backend.Application.Commands;
 using Backend.Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Backend.UI.Controllers
 {
-    [Route("[controller]")]
+    [Authorize]
     [ApiController]
+    [Route("[controller]")]
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeService _employeeService;

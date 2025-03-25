@@ -34,6 +34,7 @@ namespace Backend.Tests.Repositories
                         DocumentCode = $"Document{i % 3 + 1}",
                         BirthDate = DateOnly.FromDateTime(DateTime.Now.AddMonths(-i)),
                         Phone = $"(99) 99999-999{phoneNumber}",
+                        PasswordHash = $"HashedValue{i}"
                     });
                 }
 
@@ -94,6 +95,7 @@ namespace Backend.Tests.Repositories
                 Role = "Manager",
                 BirthDate = DateOnly.FromDateTime(DateTime.Now),
                 Phone = "(99) 99999-9999",
+                PasswordHash = "HashedValue"
             };
 
             var result = await repository.CreateEmployee(newEmployee);
@@ -135,5 +137,31 @@ namespace Backend.Tests.Repositories
             var deletedEmployee = await context.Employees.FindAsync(employeeId);
             Assert.Null(deletedEmployee);
         }
+
+        [Fact]
+        public async Task GetEmployeeByEmail_RetrievesEmployee()
+        {
+            var context = await GetDbContext();
+            var repository = new EmployeeRepository(context);
+            string employeeEmail = "employee5@example.com";
+
+            var employee = await repository.GetEmployeeByEmail(employeeEmail);
+
+            Assert.NotNull(employee);
+            Assert.Equal(employee.Email, employeeEmail);
+        }
+
+        [Fact]
+        public async Task GetEmployeeByEmail_NonExistingEmail_ReturnsNull()
+        {
+            var context = await GetDbContext();
+            var repository = new EmployeeRepository(context);
+            string nonExistingEmail = "nonexisting@example.com";
+
+            var result = await repository.GetEmployeeByEmail(nonExistingEmail);
+
+            Assert.Null(result);
+        }
+
     }
 }

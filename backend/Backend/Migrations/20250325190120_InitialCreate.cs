@@ -25,7 +25,8 @@ namespace Backend.Migrations
                     Role = table.Column<string>(type: "text", nullable: false),
                     ManagerName = table.Column<string>(type: "text", nullable: true),
                     BirthDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    Phone = table.Column<string>(type: "text", nullable: false)
+                    Phone = table.Column<string>(type: "text", nullable: false),
+                    PasswordHash = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -36,6 +37,12 @@ namespace Backend.Migrations
                 name: "IX_Employees_DocumentCode",
                 table: "Employees",
                 column: "DocumentCode",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_Email",
+                table: "Employees",
+                column: "Email",
                 unique: true);
         }
 

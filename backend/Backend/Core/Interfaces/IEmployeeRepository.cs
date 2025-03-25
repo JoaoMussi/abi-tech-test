@@ -9,5 +9,6 @@ namespace Backend.Core.Interfaces
         Task<Employee> CreateEmployee(Employee employee);
         Task UpdateEmployee(Employee employee);
         Task DeleteEmployee(long id);
+        Task<Employee?> GetEmployeeByEmail(string email);
     }
 }

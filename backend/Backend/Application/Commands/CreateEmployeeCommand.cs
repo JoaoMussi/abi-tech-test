@@ -10,5 +10,6 @@ namespace Backend.Application.Commands
         public string? ManagerName { get; set; }
         public required DateTime BirthDate { get; set; }
         public required string Phone { get; set; }
+        public required string Password { get; set; }
     }
 }

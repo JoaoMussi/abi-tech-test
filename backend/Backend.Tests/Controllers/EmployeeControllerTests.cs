@@ -41,6 +41,7 @@ namespace Backend.Tests.Controllers
                     Role = "Manager",
                     BirthDate = new DateOnly(1990, 1, 1),
                     Phone = "(99) 99999-9999",
+                    PasswordHash = "HashedValue"
                 },
                 new Employee
                 {
@@ -52,6 +53,7 @@ namespace Backend.Tests.Controllers
                     Role = "Manager",
                     BirthDate = new DateOnly(1992, 5, 15),
                     Phone = "(99) 99999-9999",
+                    PasswordHash = "HashedValue"
                 }
             };
 
@@ -134,6 +136,7 @@ namespace Backend.Tests.Controllers
                 Role = "Manager",
                 BirthDate = new DateTime(1990, 1, 1),
                 Phone = "(99) 99999-9999",
+                Password = "HashedValue"
             };
 
             var createdEmployee = new Employee
@@ -146,6 +149,7 @@ namespace Backend.Tests.Controllers
                 Role = "Manager",
                 BirthDate = new DateOnly(1991, 5, 10),
                 Phone = "(99) 99999-9999",
+                PasswordHash = "HashedValue"
             };
 
             _mockEmployeeService

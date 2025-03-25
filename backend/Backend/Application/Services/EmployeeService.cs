@@ -48,6 +48,7 @@ namespace Backend.Application.Services
                 Role = employeeCommand.Role,
                 ManagerName = employeeCommand.ManagerName,
                 Phone = employeeCommand.Phone,
+                PasswordHash = employeeCommand.Password,
                 BirthDate = DateOnly.FromDateTime(employeeCommand.BirthDate),
             };
 

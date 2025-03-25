@@ -40,5 +40,10 @@ namespace Backend.Infrastructure.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task<Employee?> GetEmployeeByEmail(string email)
+        {
+            return await _context.Employees.SingleOrDefaultAsync(e => e.Email == email);
+        }
     }
 }

@@ -11,5 +11,6 @@ namespace Backend.Core.Entities
         public string? ManagerName { get; set; }
         public required DateOnly BirthDate { get; set; }
         public required string Phone { get; set; }
+        public required string PasswordHash { get; set; }
     }
 }

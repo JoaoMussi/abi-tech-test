@@ -38,6 +38,7 @@ namespace Backend.Tests.Application.Services
                     Role = "Manager",
                     BirthDate = new DateOnly(1990, 1, 1),
                     Phone = "(99) 99999-9999",
+                    PasswordHash = "HashedValue"
                 },
                 new Employee
                 {
@@ -49,6 +50,7 @@ namespace Backend.Tests.Application.Services
                     Role = "Manager",
                     BirthDate = new DateOnly(1992, 5, 15),
                     Phone = "(99) 99999-9999",
+                    PasswordHash = "HashedValue"
                 }
             };
 
@@ -89,6 +91,7 @@ namespace Backend.Tests.Application.Services
                     Role = "Manager",
                     BirthDate = new DateOnly(1990, 1, 1),
                     Phone = "(99) 99999-9999",
+                    PasswordHash = "HashedValue"
                 });
 
             var result = await _service.GetEmployeeById(employeeId);
@@ -123,6 +126,7 @@ namespace Backend.Tests.Application.Services
                 Role = "Manager",
                 BirthDate = new DateTime(1990, 1, 1),
                 Phone = "(99) 99999-9999",
+                Password = "HashedValue"
             };
 
             var expectedEmployee = new Employee
@@ -135,6 +139,7 @@ namespace Backend.Tests.Application.Services
                 Role = command.Role,
                 BirthDate = DateOnly.FromDateTime(command.BirthDate),
                 Phone = command.Phone,
+                PasswordHash = command.Password
             };
 
             _mockRepository.Setup(repo => repo.CreateEmployee(It.IsAny<Employee>()))
@@ -179,6 +184,7 @@ namespace Backend.Tests.Application.Services
                 Role = "Manager",
                 BirthDate = new DateOnly(1990, 1, 1),
                 Phone = "(99) 99999-9999",
+                PasswordHash = "HashedValue"
             };
 
             var command = new EditEmployeeCommand
