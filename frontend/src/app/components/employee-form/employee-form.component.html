@@ -141,24 +141,24 @@
   </div>
 
   <div class="items-center flex-auto gap-4 mb-5">
-    <label for="number" class="font-semibold">Number</label>
+    <label for="phone" class="font-semibold">Phone</label>
     <input
       pInputText
-      id="number"
-      formControlName="number"
+      id="phone"
+      formControlName="phone"
       autocomplete="off"
       fluid
     />
     <p-message
       *ngIf="
-        employeeForm.controls.number.touched &&
-        employeeForm.controls.number.getError('required')
+        employeeForm.controls.phone.touched &&
+        employeeForm.controls.phone.getError('required')
       "
       severity="error"
       variant="simple"
       size="small"
     >
-      Number is required
+      Phone is required
     </p-message>
   </div>
 </form>

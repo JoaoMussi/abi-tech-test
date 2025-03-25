@@ -48,7 +48,7 @@ describe('EmployeeCreateModalComponent', () => {
       role: 'Any Role',
       managerName: '',
       birthDate: new Date(),
-      number: 999999999,
+      phone: '999999999',
     });
 
     component.saveEmployee();
@@ -82,7 +82,7 @@ describe('EmployeeCreateModalComponent', () => {
       role: 'Any Role',
       managerName: '',
       birthDate: new Date(),
-      number: 999999999,
+      phone: '999999999',
     });
 
     component.saveEmployee();

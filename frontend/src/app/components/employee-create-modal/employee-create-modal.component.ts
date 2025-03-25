@@ -1,15 +1,9 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  signal
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { Dialog } from 'primeng/dialog';
-import { CreateEmployeeForm } from '../../interfaces/employee-form.interface';
+import { EmployeeForm } from '../../interfaces/employee-form.interface';
 import { Employee } from '../../interfaces/employee.interface';
 import { EmployeesService } from '../../services/employees.service';
 import { EmployeeFormComponent } from '../employee-form/employee-form.component';
@@ -25,11 +19,11 @@ export class EmployeeCreateModalComponent {
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() employeeCreated: EventEmitter<void> = new EventEmitter<void>();
 
-  employeeForm: FormGroup<CreateEmployeeForm>;
+  employeeForm: FormGroup<EmployeeForm>;
   loading = signal(false);
 
   constructor(private employeeService: EmployeesService) {
-    this.employeeForm = new FormGroup<CreateEmployeeForm>({
+    this.employeeForm = new FormGroup<EmployeeForm>({
       name: new FormControl<string>('', Validators.required),
       lastName: new FormControl<string>('', Validators.required),
       email: new FormControl<string>('', Validators.required),
@@ -37,7 +31,7 @@ export class EmployeeCreateModalComponent {
       role: new FormControl<string>('', Validators.required),
       managerName: new FormControl<string>(''),
       birthDate: new FormControl<Date | null>(null, Validators.required),
-      number: new FormControl<number | null>(null, Validators.required),
+      phone: new FormControl<string | null>(null, Validators.required),
     });
   }
 
