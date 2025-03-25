@@ -3,14 +3,22 @@ using Backend.Infrastructure.Data;
 using Backend.Core.Interfaces;
 using Backend.Infrastructure.Repositories;
 using Backend.Application.Services;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs/app.log", rollingInterval: RollingInterval.Day)
+    .Enrich.FromLogContext()
+    .MinimumLevel.Information()
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 builder.Configuration.AddEnvironmentVariables();
 var connectionString =
     builder.Configuration.GetConnectionString("DefaultConnection");
-
 builder.Services.AddDbContext<EmployeeManagementContext>(opt => opt.UseNpgsql(connectionString));
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
@@ -35,6 +43,8 @@ if (app.Environment.IsDevelopment())
     });
     app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod());
 }
+
+app.UseSerilogRequestLogging();
 
 app.UseAuthorization();
 
