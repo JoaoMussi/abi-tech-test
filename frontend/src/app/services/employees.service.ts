@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Employee } from '../interfaces/employee.interface';
 
@@ -14,8 +14,8 @@ export class EmployeesService {
     return this.http.get<Employee[]>(`${environment.API_URL}/employee`);
   }
 
-  getEmployee(id: number): Observable<Employee[]> {
-    return this.http.get<Employee[]>(`${environment.API_URL}/employee/${id}`);
+  getEmployee(id: number): Observable<Employee> {
+    return this.http.get<Employee>(`${environment.API_URL}/employee/${id}`);
   }
 
   createEmployee(employee: Employee): Observable<Employee> {
