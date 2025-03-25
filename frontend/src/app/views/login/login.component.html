@@ -1,0 +1,41 @@
+<div class="flex flex-col gap-5 w-full min-h-dvh items-center justify-center">
+  <div class="flex flex-col items-center">
+    <p class="text-4xl">Welcome!</p>
+    <p class="text-2xl">Login to manage all employees</p>
+  </div>
+  <p-card
+    class="flex flex-col w-full items-center"
+    [style]="{ width: '30rem' }"
+  >
+    <form [formGroup]="loginForm">
+      <div class="items-center w-full gap-4 mb-5">
+        <label for="email" class="font-semibold">Email</label>
+        <input
+          pInputText
+          id="email"
+          formControlName="email"
+          fluid
+          autocomplete="off"
+        />
+      </div>
+      <div class="items-center w-full gap-4 mb-5">
+        <label for="password" class="font-semibold">Password</label>
+        <input
+          pInputText
+          id="password"
+          formControlName="password"
+          fluid
+          autocomplete="off"
+        />
+      </div>
+    </form>
+    <div class="flex w-full justify-end">
+      <p-button
+        label="Login"
+        aria-label="Login"
+        [loading]="loading()"
+        (click)="login()"
+      />
+    </div>
+  </p-card>
+</div>
