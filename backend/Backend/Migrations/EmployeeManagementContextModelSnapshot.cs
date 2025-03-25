@@ -62,6 +62,9 @@ namespace Backend.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DocumentCode")
+                        .IsUnique();
+
                     b.ToTable("Employees");
                 });
 #pragma warning restore 612, 618

@@ -10,5 +10,12 @@ namespace Backend.Infrastructure.Data
         public EmployeeManagementContext(DbContextOptions<EmployeeManagementContext> options) : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Employee>()
+                .HasIndex(e => e.DocumentCode)
+                .IsUnique();
+        }
     }
 }

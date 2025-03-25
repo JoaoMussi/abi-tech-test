@@ -31,6 +31,12 @@ namespace Backend.Migrations
                 {
                     table.PrimaryKey("PK_Employees", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_DocumentCode",
+                table: "Employees",
+                column: "DocumentCode",
+                unique: true);
         }
 
         /// <inheritdoc />

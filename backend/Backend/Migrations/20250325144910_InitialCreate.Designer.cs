@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Migrations
 {
     [DbContext(typeof(EmployeeManagementContext))]
-    [Migration("20250325011635_InitialCreate")]
+    [Migration("20250325144910_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -64,6 +64,9 @@ namespace Backend.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DocumentCode")
+                        .IsUnique();
 
                     b.ToTable("Employees");
                 });
