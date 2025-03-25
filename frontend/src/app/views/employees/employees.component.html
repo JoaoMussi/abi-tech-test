@@ -16,6 +16,7 @@
 
   <app-employee-table
     [employees]="employees"
+    (employeeDeleted)="getEmployees()"
     (updateEmployee)="updateEmployee($event)"
   ></app-employee-table>
 
@@ -26,7 +27,7 @@
   <app-employee-create-modal
     *ngIf="createVisible"
     [(visible)]="createVisible"
-    (employeeCreated)="employeeCreated()"
+    (employeeCreated)="getEmployees()"
   ></app-employee-create-modal>
 
   <ng-container *ngIf="updateEmployeeId">

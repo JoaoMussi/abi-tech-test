@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { EmployeeCreateModalComponent } from '../../components/employee-create-modal/employee-create-modal.component';
 import { EmployeeEditModalComponent } from '../../components/employee-edit-modal/employee-edit-modal.component';
@@ -31,10 +31,6 @@ export class EmployeesComponent implements OnInit {
     this.getEmployees();
   }
 
-  employeeCreated(): void {
-    this.getEmployees();
-  }
-
   updateEmployee(employeeId: number): void {
     this.updateEmployeeId = employeeId;
   }
@@ -44,7 +40,7 @@ export class EmployeesComponent implements OnInit {
     this.getEmployees();
   }
 
-  private getEmployees(): void {
+  getEmployees(): void {
     this.service
       .getEmployees()
       .pipe(take(1))

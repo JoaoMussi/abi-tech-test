@@ -32,6 +32,8 @@
             class="danger"
             icon="pi pi-trash"
             severity="danger"
+            (click)="confirmDelete($event, employee.id!)"
+            [loading]="loadingDelete()"
           ></p-button>
           <p-button
             aria-label="Edit employee"
@@ -43,3 +45,5 @@
     </ng-template>
   </p-table>
 </div>
+<p-toast position="bottom-right" />
+<p-confirmdialog />

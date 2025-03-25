@@ -38,12 +38,6 @@ describe('EmployeesComponent', () => {
     expect(component.employees).toEqual(EMPLOYEES_MOCK);
   });
 
-  it('should refresh employee list when employee is created', () => {
-    jest.spyOn(service, 'getEmployees');
-    component.employeeCreated();
-    expect(service.getEmployees).toHaveBeenCalled();
-  });
-
   it('should set updateEmployeeId when updateEmployee is called', () => {
     component.updateEmployee(5);
     expect(component.updateEmployeeId).toBe(5);
