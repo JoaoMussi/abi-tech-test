@@ -11,6 +11,7 @@ import { EmployeeForm } from '../../interfaces/employee-form.interface';
 import { EmployeesService } from '../../services/employees.service';
 import { of, throwError } from 'rxjs';
 import { EMPLOYEES_MOCK } from '../../__mocks__/employees.mock';
+import { minAgeValidator } from '../../shared/validators/min-age.validator';
 
 describe('EmployeeEditModalComponent', () => {
   let component: EmployeeEditModalComponent;
@@ -56,7 +57,10 @@ describe('EmployeeEditModalComponent', () => {
       documentCode: new FormControl<string>('123456789', Validators.required),
       role: new FormControl<string>('Any Role', Validators.required),
       managerName: new FormControl<string | null>('Manager'),
-      birthDate: new FormControl<Date | null>(new Date(), Validators.required),
+      birthDate: new FormControl<Date | null>(new Date(2000, 1, 1), [
+        Validators.required,
+        minAgeValidator(),
+      ]),
       phone: new FormControl<string | null>('999999999', Validators.required),
     });
 
@@ -95,7 +99,10 @@ describe('EmployeeEditModalComponent', () => {
       documentCode: new FormControl<string>('123456789', Validators.required),
       role: new FormControl<string>('Any Role', Validators.required),
       managerName: new FormControl<string | null>('Manager'),
-      birthDate: new FormControl<Date | null>(new Date(), Validators.required),
+      birthDate: new FormControl<Date | null>(
+        new Date(2000, 1, 1),
+        Validators.required
+      ),
       phone: new FormControl<string | null>('999999999', Validators.required),
     });
 

@@ -7,6 +7,7 @@ import { EmployeeForm } from '../../interfaces/employee-form.interface';
 import { Employee } from '../../interfaces/employee.interface';
 import { EmployeesService } from '../../services/employees.service';
 import { EmployeeFormComponent } from '../employee-form/employee-form.component';
+import { minAgeValidator } from '../../shared/validators/min-age.validator';
 
 @Component({
   selector: 'app-employee-create-modal',
@@ -30,7 +31,10 @@ export class EmployeeCreateModalComponent {
       documentCode: new FormControl<string>('', Validators.required),
       role: new FormControl<string>('', Validators.required),
       managerName: new FormControl<string>(''),
-      birthDate: new FormControl<Date | null>(null, Validators.required),
+      birthDate: new FormControl<Date | null>(null, [
+        Validators.required,
+        minAgeValidator(),
+      ]),
       phone: new FormControl<string | null>(null, Validators.required),
     });
   }

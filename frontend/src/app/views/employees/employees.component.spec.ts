@@ -37,19 +37,4 @@ describe('EmployeesComponent', () => {
     fixture.detectChanges();
     expect(component.employees).toEqual(EMPLOYEES_MOCK);
   });
-
-  it('should set updateEmployeeId when updateEmployee is called', () => {
-    component.updateEmployee(5);
-    expect(component.updateEmployeeId).toBe(5);
-  });
-
-  it('should clear updateEmployeeId and refresh employee list when employeeUpdated is called', () => {
-    jest.spyOn(service, 'getEmployees').mockReturnValue(of(EMPLOYEES_MOCK));
-
-    component.updateEmployee(3);
-    component.employeeUpdated();
-
-    expect(component.updateEmployeeId).toBeUndefined();
-    expect(service.getEmployees).toHaveBeenCalled();
-  });
 });

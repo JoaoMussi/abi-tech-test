@@ -47,7 +47,7 @@ describe('EmployeeCreateModalComponent', () => {
       documentCode: '123456789',
       role: 'Any Role',
       managerName: '',
-      birthDate: new Date(),
+      birthDate: new Date(2000, 1, 1),
       phone: '999999999',
     });
 
@@ -69,7 +69,7 @@ describe('EmployeeCreateModalComponent', () => {
     expect(component.loading.set).not.toHaveBeenCalled();
     expect(service.createEmployee).not.toHaveBeenCalled();
   });
-  
+
   it('should enable button on error', fakeAsync(() => {
     jest.spyOn(component.loading, 'set');
     jest
@@ -82,7 +82,7 @@ describe('EmployeeCreateModalComponent', () => {
       documentCode: '123456789',
       role: 'Any Role',
       managerName: '',
-      birthDate: new Date(),
+      birthDate: new Date(2000, 1, 1),
       phone: '999999999',
     });
 

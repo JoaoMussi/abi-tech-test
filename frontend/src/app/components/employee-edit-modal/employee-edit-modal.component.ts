@@ -15,6 +15,7 @@ import { Employee } from '../../interfaces/employee.interface';
 import { EmployeesService } from '../../services/employees.service';
 import { EmployeeFormComponent } from '../employee-form/employee-form.component';
 import { Dialog } from 'primeng/dialog';
+import { minAgeValidator } from '../../shared/validators/min-age.validator';
 
 @Component({
   selector: 'app-employee-edit-modal',
@@ -79,10 +80,10 @@ export class EmployeeEditModalComponent implements OnInit {
       ),
       role: new FormControl<string>(employee.role, Validators.required),
       managerName: new FormControl<string | null>(employee.managerName ?? null),
-      birthDate: new FormControl<Date | null>(
-        new Date(employee.birthDate),
-        Validators.required
-      ),
+      birthDate: new FormControl<Date | null>(new Date(employee.birthDate), [
+        Validators.required,
+        minAgeValidator(),
+      ]),
       phone: new FormControl<string | null>(
         employee.phone,
         Validators.required

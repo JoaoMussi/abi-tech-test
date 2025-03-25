@@ -124,6 +124,17 @@
     >
       Birth date is required
     </p-message>
+    <p-message
+      *ngIf="
+        employeeForm.controls.birthDate.touched &&
+        employeeForm.controls.birthDate.getError('minAge')
+      "
+      severity="error"
+      variant="simple"
+      size="small"
+    >
+      Employee must have at least 18 years old
+    </p-message>
   </div>
 
   <div class="items-center gap-4 mb-5">
