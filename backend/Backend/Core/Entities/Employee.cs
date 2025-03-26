@@ -12,5 +12,6 @@ namespace Backend.Core.Entities
         public required DateOnly BirthDate { get; set; }
         public required string Phone { get; set; }
         public required string PasswordHash { get; set; }
+        public bool Deleted { get; set; } = false;
     }
 }

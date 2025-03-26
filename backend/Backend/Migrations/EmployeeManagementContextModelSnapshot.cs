@@ -33,6 +33,9 @@ namespace Backend.Migrations
                     b.Property<DateOnly>("BirthDate")
                         .HasColumnType("date");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("DocumentCode")
                         .IsRequired()
                         .HasColumnType("text");
