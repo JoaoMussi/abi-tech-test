@@ -77,9 +77,7 @@ public class AuthControllerTests
             PasswordHash = "HashedValue"
         };
 
-        _authServiceMock.Setup(service => service.ValidateUser(loginCommand.Email, loginCommand.Password)).ReturnsAsync(true);
-        _authServiceMock.Setup(service => service.GetUserByEmail(loginCommand.Email)).ReturnsAsync(employee);
-        _authServiceMock.Setup(service => service.GenerateToken(employee)).Returns("mocked-jwt-token");
+        _authServiceMock.Setup(service => service.Login(loginCommand)).ReturnsAsync("mocked-jwt-token");
 
         var result = await _authController.Login(loginCommand);
 
@@ -91,7 +89,7 @@ public class AuthControllerTests
     {
         var loginCommand = new LoginCommand { Email = "test@example.com", Password = "wrongpassword" };
 
-        _authServiceMock.Setup(service => service.ValidateUser(loginCommand.Email, loginCommand.Password)).ReturnsAsync(false);
+        _authServiceMock.Setup(service => service.Login(loginCommand)).ReturnsAsync((string?)null);
 
         var result = await _authController.Login(loginCommand);
 

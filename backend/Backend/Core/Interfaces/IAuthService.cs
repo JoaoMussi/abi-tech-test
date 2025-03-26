@@ -7,6 +7,7 @@ namespace Backend.Core.Interfaces
     {
         string GenerateToken(Employee employee);
         Task<bool> Register(CreateEmployeeCommand employeeCommand);
+        Task<string?> Login(LoginCommand loginCommand);
         Task<bool> ValidateUser(string email, string password);
         Task<Employee?> GetUserByEmail(string email);
     }

@@ -39,6 +39,17 @@ public class AuthService : IAuthService
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
+    public async Task<string?> Login(LoginCommand loginCommand)
+    {
+        if (await ValidateUser(loginCommand.Email, loginCommand.Password))
+        {
+            var employee = await GetUserByEmail(loginCommand.Email);
+            return GenerateToken(employee!);
+        }
+
+        return null;
+    }
+
     public async Task<bool> Register(CreateEmployeeCommand employeeCommand)
     {
         var employee = await _authRepository.GetUserByEmail(employeeCommand.Email);

@@ -25,6 +25,31 @@ public class AuthServiceTests
     }
 
     [Fact]
+    public async Task Login_ShouldValidateLogin_WhenCredentialsAreValid()
+    {
+        var loginCommand = new LoginCommand { Email = "test@example.com", Password = "password123" };
+        var hashedPassword = BCrypt.Net.BCrypt.HashPassword("password123");
+        var employee = new Employee
+        {
+            Id = 1,
+            Name = "John",
+            LastName = "Doe",
+            Email = "john.doe@example.com",
+            DocumentCode = "DOC456",
+            Role = "Manager",
+            BirthDate = new DateOnly(1991, 5, 10),
+            Phone = "(99) 99999-9999",
+            PasswordHash = hashedPassword
+        };
+
+        _mockAuthRepository.Setup(repo => repo.GetUserByEmail(loginCommand.Email)).ReturnsAsync(employee);
+
+        var result = await _authService.Login(loginCommand);
+
+        Assert.NotNull(result);
+    }
+
+    [Fact]
     public async Task Register_ShouldReturnFalse_WhenUserAlreadyExists()
     {
         var command = new CreateEmployeeCommand
