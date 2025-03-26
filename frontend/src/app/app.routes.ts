@@ -1,14 +1,12 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
-import { LayoutComponent } from './core/layout/layout.component';
-import { LoginComponent } from './views/login/login.component';
-import { RegisterComponent } from './views/register/register.component';
 
 export const routes: Routes = [
   {
     path: '',
     canActivateChild: [authGuard],
-    component: LayoutComponent,
+    loadComponent: () =>
+      import('./core/layout/layout.component').then((c) => c.LayoutComponent),
     children: [
       {
         path: '',
@@ -26,10 +24,14 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent,
+    loadComponent: () =>
+      import('./views/login/login.component').then((c) => c.LoginComponent),
   },
   {
     path: 'register',
-    component: RegisterComponent,
+    loadComponent: () =>
+      import('./views/register/register.component').then(
+        (c) => c.RegisterComponent
+      ),
   },
 ];
