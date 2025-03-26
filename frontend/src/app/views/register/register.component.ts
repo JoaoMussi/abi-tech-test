@@ -22,21 +22,18 @@ export class RegisterComponent {
 
   constructor(private authService: AuthService, private router: Router) {
     this.registerForm = new FormGroup<EmployeeForm>({
-      name: new FormControl<string>('Jon', Validators.required),
-      lastName: new FormControl<string>('Doe', Validators.required),
-      email: new FormControl<string>(
-        'jon.doe@example.com',
-        Validators.required
-      ),
-      documentCode: new FormControl<string>('DOC333', Validators.required),
-      role: new FormControl<string>('Leader', Validators.required),
+      name: new FormControl<string>('', Validators.required),
+      lastName: new FormControl<string>('', Validators.required),
+      email: new FormControl<string>('', Validators.required),
+      documentCode: new FormControl<string>('', Validators.required),
+      role: new FormControl<string>('', Validators.required),
       managerName: new FormControl<string>(''),
-      birthDate: new FormControl<Date | null>(new Date(2000, 0, 0), [
+      birthDate: new FormControl<Date | null>(new Date(), [
         Validators.required,
         minAgeValidator(),
       ]),
-      phone: new FormControl<string | null>('99999999', Validators.required),
-      password: new FormControl<string | null>('123', Validators.required),
+      phone: new FormControl<string | null>('', Validators.required),
+      password: new FormControl<string | null>('', Validators.required),
     });
   }
 
