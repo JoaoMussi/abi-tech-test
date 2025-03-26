@@ -1,14 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { EmployeeForm } from '../../interfaces/employee-form.interface';
-import { minAgeValidator } from '../../shared/validators/min-age.validator';
-import { AuthService } from '../../core/services/auth.service';
-import { catchError, take } from 'rxjs';
-import { Employee } from '../../interfaces/employee.interface';
 import { Router } from '@angular/router';
-import { EmployeeFormComponent } from '../../components/employee-form/employee-form.component';
+import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { take } from 'rxjs';
+import { EmployeeFormComponent } from '../../components/employee-form/employee-form.component';
+import { AuthService } from '../../core/services/auth.service';
+import { EmployeeForm } from '../../interfaces/employee-form.interface';
+import { Employee } from '../../interfaces/employee.interface';
+import { minAgeValidator } from '../../shared/validators/min-age.validator';
 
 @Component({
   selector: 'app-register',
@@ -28,10 +28,12 @@ export class RegisterComponent {
       documentCode: new FormControl<string>('', Validators.required),
       role: new FormControl<string>('', Validators.required),
       managerName: new FormControl<string>(''),
-      birthDate: new FormControl<Date | null>(new Date(), [
+      birthDate: new FormControl<Date | null>(null, [
         Validators.required,
         minAgeValidator(),
       ]),
+      hiringDate: new FormControl<Date | null>(new Date()),
+      salary: new FormControl<number | null>(null),
       phone: new FormControl<string | null>('', Validators.required),
       password: new FormControl<string | null>('', Validators.required),
     });

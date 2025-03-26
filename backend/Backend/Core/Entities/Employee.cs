@@ -10,6 +10,8 @@ namespace Backend.Core.Entities
         public required string Role { get; set; }
         public string? ManagerName { get; set; }
         public required DateOnly BirthDate { get; set; }
+        public DateOnly? HiringDate { get; set; }
+        public double? Salary { get; set; }
         public required string Phone { get; set; }
         public required string PasswordHash { get; set; }
         public bool Deleted { get; set; } = false;

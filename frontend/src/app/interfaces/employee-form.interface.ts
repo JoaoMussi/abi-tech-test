@@ -9,6 +9,8 @@ export interface EmployeeForm {
   role: FormControl<string | null>;
   managerName: FormControl<string | null>;
   birthDate: FormControl<Date | null>;
+  hiringDate: FormControl<Date | null>;
+  salary: FormControl<number | null>;
   phone: FormControl<string | null>;
   password?: FormControl<string | null>;
 }

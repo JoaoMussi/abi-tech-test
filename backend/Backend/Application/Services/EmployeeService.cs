@@ -48,6 +48,8 @@ namespace Backend.Application.Services
                 DocumentCode = employeeCommand.DocumentCode,
                 Role = employeeCommand.Role,
                 ManagerName = employeeCommand.ManagerName,
+                HiringDate = employeeCommand.HiringDate == null ? null : DateOnly.FromDateTime((DateTime)employeeCommand.HiringDate),
+                Salary = employeeCommand.Salary,
                 Phone = employeeCommand.Phone,
                 PasswordHash = hashedPassword,
                 BirthDate = DateOnly.FromDateTime(employeeCommand.BirthDate),
@@ -66,8 +68,12 @@ namespace Backend.Application.Services
                 employee.LastName = employeeCommand.LastName;
                 employee.Email = employeeCommand.Email;
                 employee.DocumentCode = employeeCommand.DocumentCode;
+                employee.Role = employeeCommand.Role;
                 employee.ManagerName = employeeCommand.ManagerName;
                 employee.BirthDate = DateOnly.FromDateTime(employeeCommand.BirthDate);
+                employee.HiringDate = employeeCommand.HiringDate == null ? null : DateOnly.FromDateTime((DateTime)employeeCommand.HiringDate);
+                employee.Salary = employeeCommand.Salary;
+                employee.Phone = employeeCommand.Phone;
 
                 await _employeeRepository.UpdateEmployee(employee);
             }

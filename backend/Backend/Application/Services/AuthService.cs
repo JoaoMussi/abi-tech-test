@@ -66,6 +66,8 @@ public class AuthService : IAuthService
             DocumentCode = employeeCommand.DocumentCode,
             Role = employeeCommand.Role,
             BirthDate = DateOnly.FromDateTime(employeeCommand.BirthDate),
+            HiringDate = employeeCommand.HiringDate == null ? null : DateOnly.FromDateTime((DateTime)employeeCommand.HiringDate),
+            Salary = employeeCommand.Salary,
             Phone = employeeCommand.Phone,
             PasswordHash = hashedPassword
         };

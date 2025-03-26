@@ -25,6 +25,8 @@ namespace Backend.Migrations
                     Role = table.Column<string>(type: "text", nullable: false),
                     ManagerName = table.Column<string>(type: "text", nullable: true),
                     BirthDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    HiringDate = table.Column<DateOnly>(type: "date", nullable: true),
+                    Salary = table.Column<double>(type: "double precision", nullable: true),
                     Phone = table.Column<string>(type: "text", nullable: false),
                     PasswordHash = table.Column<string>(type: "text", nullable: false),
                     Deleted = table.Column<bool>(type: "boolean", nullable: false)

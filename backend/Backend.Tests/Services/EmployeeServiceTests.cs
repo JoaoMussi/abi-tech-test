@@ -125,6 +125,7 @@ namespace Backend.Tests.Application.Services
                 DocumentCode = "DOC123",
                 Role = "Manager",
                 BirthDate = new DateTime(1990, 1, 1),
+                HiringDate = new DateTime(1990, 1, 1),
                 Phone = "(99) 99999-9999",
                 Password = "HashedValue"
             };
@@ -137,7 +138,8 @@ namespace Backend.Tests.Application.Services
                 Email = command.Email,
                 DocumentCode = command.DocumentCode,
                 Role = command.Role,
-                BirthDate = DateOnly.FromDateTime(command.BirthDate),
+                BirthDate = new DateOnly(1990, 1, 1),
+                HiringDate = new DateOnly(1990, 1, 1),
                 Phone = command.Phone,
                 PasswordHash = command.Password
             };
@@ -145,7 +147,7 @@ namespace Backend.Tests.Application.Services
             _mockRepository.Setup(repo => repo.CreateEmployee(It.IsAny<Employee>()))
                 .ReturnsAsync((Employee emp) =>
                 {
-                    emp.Id = 1; // Simulate ID generation
+                    emp.Id = 1;
                     return emp;
                 });
 
@@ -183,6 +185,7 @@ namespace Backend.Tests.Application.Services
                 DocumentCode = "DOC123",
                 Role = "Manager",
                 BirthDate = new DateOnly(1990, 1, 1),
+                HiringDate = new DateOnly(1990, 1, 1),
                 Phone = "(99) 99999-9999",
                 PasswordHash = "HashedValue"
             };
@@ -196,6 +199,7 @@ namespace Backend.Tests.Application.Services
                 DocumentCode = "DOC789",
                 Role = "Manager",
                 BirthDate = new DateTime(1990, 5, 10),
+                HiringDate = new DateTime(1990, 5, 10),
                 Phone = "(99) 99999-9999",
             };
 
@@ -212,7 +216,8 @@ namespace Backend.Tests.Application.Services
                     e.LastName == command.LastName &&
                     e.Email == command.Email &&
                     e.DocumentCode == command.DocumentCode &&
-                    e.BirthDate == DateOnly.FromDateTime(command.BirthDate)
+                    e.BirthDate == DateOnly.FromDateTime(command.BirthDate) &&
+                    e.HiringDate == DateOnly.FromDateTime((DateTime)command.HiringDate)
                 )),
                 Times.Once);
         }

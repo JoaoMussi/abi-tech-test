@@ -7,6 +7,8 @@ export interface Employee {
   role: string;
   managerName?: string;
   birthDate: Date;
+  hiringDate?: Date;
+  salary?: number;
   phone: string;
   password?: string;
 }

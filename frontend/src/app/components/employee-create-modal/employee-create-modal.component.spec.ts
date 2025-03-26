@@ -48,6 +48,9 @@ describe('EmployeeCreateModalComponent', () => {
       role: 'Any Role',
       managerName: '',
       birthDate: new Date(2000, 1, 1),
+      hiringDate: new Date(),
+      salary: null,
+      password: '123',
       phone: '999999999',
     });
 
@@ -83,6 +86,9 @@ describe('EmployeeCreateModalComponent', () => {
       role: 'Any Role',
       managerName: '',
       birthDate: new Date(2000, 1, 1),
+      hiringDate: new Date(),
+      salary: null,
+      password: '123',
       phone: '999999999',
     });
 

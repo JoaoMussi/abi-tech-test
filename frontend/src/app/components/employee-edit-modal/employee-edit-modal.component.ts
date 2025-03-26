@@ -84,6 +84,10 @@ export class EmployeeEditModalComponent implements OnInit {
         Validators.required,
         minAgeValidator(),
       ]),
+      hiringDate: new FormControl<Date | null>(
+        employee.hiringDate ? new Date(employee.hiringDate) : null
+      ),
+      salary: new FormControl<number | null>(employee.salary ?? null),
       phone: new FormControl<string | null>(
         employee.phone,
         Validators.required

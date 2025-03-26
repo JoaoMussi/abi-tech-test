@@ -12,12 +12,12 @@ export class AuthService {
 
   login(email: string, password: string): Observable<void> {
     return this.http
-      .post<{ token: string }>(`${environment.API_URL}/auth/login`, {
+      .post<{ authToken: string }>(`${environment.API_URL}/auth/login`, {
         email,
         password,
       })
       .pipe(
-        tap(({ token }) => localStorage.setItem('token', token)),
+        tap(({ authToken }) => localStorage.setItem('authToken', authToken)),
         map(() => undefined)
       );
   }
@@ -30,10 +30,10 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('authToken');
   }
 
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
+    return !!localStorage.getItem('authToken');
   }
 }

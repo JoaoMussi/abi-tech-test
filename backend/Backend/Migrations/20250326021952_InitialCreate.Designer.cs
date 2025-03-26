@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Migrations
 {
     [DbContext(typeof(EmployeeManagementContext))]
-    [Migration("20250326002419_InitialCreate")]
+    [Migration("20250326021952_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -47,6 +47,9 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<DateOnly?>("HiringDate")
+                        .HasColumnType("date");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("text");
@@ -69,6 +72,9 @@ namespace Backend.Migrations
                     b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<double?>("Salary")
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
 

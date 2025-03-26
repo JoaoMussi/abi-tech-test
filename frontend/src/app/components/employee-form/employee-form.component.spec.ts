@@ -15,7 +15,6 @@ import { minAgeValidator } from '../../shared/validators/min-age.validator';
   template: `<app-employee-form
     #employeeFormComponent
     [employeeForm]="employeeForm"
-    [visible]="true"
   ></app-employee-form>`,
   imports: [EmployeeFormComponent, ReactiveFormsModule],
 })
@@ -38,11 +37,15 @@ class HostComponent {
         Validators.required,
         minAgeValidator(),
       ]),
+      hiringDate: new FormControl<Date | null>(new Date()),
+      salary: new FormControl<number | null>(18000),
       phone: new FormControl<string | null>('999999999', Validators.required),
     });
   }
 
-  @ViewChild('employeeFormComponent') employeeFormComponent: EmployeeForm | undefined;
+  @ViewChild('employeeFormComponent') employeeFormComponent:
+    | EmployeeForm
+    | undefined;
 }
 describe('EmployeeFormComponent', () => {
   let hostComponent: HostComponent;

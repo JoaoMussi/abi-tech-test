@@ -27,4 +27,6 @@ import { EmployeeForm } from '../../interfaces/employee-form.interface';
 export class EmployeeFormComponent {
   @Input() employeeForm!: FormGroup<EmployeeForm>;
   @Input() editMode: boolean = false;
+
+  maxDate = new Date();
 }

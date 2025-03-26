@@ -177,6 +177,27 @@
     />
   </div>
 
+  <div class="items-center gap-4 mb-5">
+    <label for="hiringDate" class="font-semibold">Hiring Date</label>
+    <p-datepicker
+      inputId="hiringDate"
+      formControlName="hiringDate"
+      [maxDate]="maxDate"
+      fluid
+    />
+  </div>
+
+  <div class="items-center gap-4 mb-5">
+    <label for="salary" class="font-semibold">Monthly Salary</label>
+    <p-inputnumber
+      formControlName="salary"
+      inputId="salary"
+      mode="currency"
+      currency="BRL"
+      fluid
+    />
+  </div>
+
   <div class="items-center flex-auto gap-4 mb-5">
     <label for="phone" class="font-semibold">Phone</label>
     <input

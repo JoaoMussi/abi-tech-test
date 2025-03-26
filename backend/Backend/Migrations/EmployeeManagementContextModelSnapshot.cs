@@ -44,6 +44,9 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<DateOnly?>("HiringDate")
+                        .HasColumnType("date");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("text");
@@ -66,6 +69,9 @@ namespace Backend.Migrations
                     b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<double?>("Salary")
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
 

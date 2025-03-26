@@ -23,18 +23,18 @@ describe('AuthService', () => {
   });
 
   it('should login', fakeAsync(() => {
-    jest.spyOn(http, 'post').mockReturnValue(of({ token: 123 }));
+    jest.spyOn(http, 'post').mockReturnValue(of({ authToken: 123 }));
     const spy = jest.spyOn(global.Storage.prototype, 'setItem');
 
     service.login('jon@example.com', 'password').subscribe();
     tick();
 
     expect(http.post).toHaveBeenCalled();
-    expect(spy).toHaveBeenCalledWith('token', 123);
+    expect(spy).toHaveBeenCalledWith('authToken', 123);
   }));
 
   it('should register', fakeAsync(() => {
-    jest.spyOn(http, 'post').mockReturnValue(of({ token: 123 }));
+    jest.spyOn(http, 'post').mockReturnValue(of({ authToken: 123 }));
 
     service.register(EMPLOYEES_MOCK[0]).subscribe();
     tick();
@@ -45,11 +45,13 @@ describe('AuthService', () => {
   it('should logout', () => {
     const spy = jest.spyOn(global.Storage.prototype, 'removeItem');
     service.logout();
-    expect(spy).toHaveBeenCalledWith('token');
+    expect(spy).toHaveBeenCalledWith('authToken');
   });
 
   it('should check authentication', () => {
-    jest.spyOn(global.Storage.prototype, 'getItem').mockReturnValue('token');
+    jest
+      .spyOn(global.Storage.prototype, 'getItem')
+      .mockReturnValue('authToken');
     expect(service.isAuthenticated()).toBeTruthy();
   });
 });
