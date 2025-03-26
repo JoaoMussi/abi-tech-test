@@ -58,14 +58,11 @@ using (var scope = app.Services.CreateScope())
     context.Database.Migrate();
 }
 
-if (app.Environment.IsDevelopment())
+app.MapOpenApi();
+app.UseSwaggerUi(options =>
 {
-    app.MapOpenApi();
-    app.UseSwaggerUi(options =>
-    {
-        options.DocumentPath = "/openapi/v1.json";
-    });
-}
+    options.DocumentPath = "/openapi/v1.json";
+});
 
 app.UseSerilogRequestLogging();
 app.UseAuthentication();
