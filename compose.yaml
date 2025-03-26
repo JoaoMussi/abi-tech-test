@@ -40,7 +40,7 @@ services:
         networks:
             - employee_network
         ports:
-            - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+            - "3000:3000"
 
 volumes:
     pgdata:
