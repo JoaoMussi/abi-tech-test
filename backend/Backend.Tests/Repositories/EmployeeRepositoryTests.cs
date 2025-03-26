@@ -135,7 +135,8 @@ namespace Backend.Tests.Repositories
             await repository.DeleteEmployee(employeeId);
 
             var deletedEmployee = await context.Employees.FindAsync(employeeId);
-            Assert.Null(deletedEmployee);
+            Assert.Equal(deletedEmployee.Id, employeeId);
+            Assert.Equal(deletedEmployee.Deleted, true);
         }
 
         [Fact]

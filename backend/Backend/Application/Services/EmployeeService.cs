@@ -39,6 +39,7 @@ namespace Backend.Application.Services
 
         public async Task<Employee> CreateEmployee(CreateEmployeeCommand employeeCommand)
         {
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(employeeCommand.Password);
             var employee = new Employee
             {
                 Name = employeeCommand.Name,
@@ -48,7 +49,7 @@ namespace Backend.Application.Services
                 Role = employeeCommand.Role,
                 ManagerName = employeeCommand.ManagerName,
                 Phone = employeeCommand.Phone,
-                PasswordHash = employeeCommand.Password,
+                PasswordHash = hashedPassword,
                 BirthDate = DateOnly.FromDateTime(employeeCommand.BirthDate),
             };
 

@@ -35,8 +35,7 @@ public class AuthControllerTests
 
         var result = await _authController.Register(employeeCommand);
 
-        var okResult = Assert.IsType<OkObjectResult>(result);
-        Assert.Equal("User registered successfully", okResult.Value);
+        Assert.IsType<OkResult>(result);
     }
 
     [Fact]
