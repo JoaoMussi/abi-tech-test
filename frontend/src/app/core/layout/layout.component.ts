@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
 import { ToastModule } from 'primeng/toast';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-layout',
-  imports: [RouterOutlet, MenubarModule, ToastModule],
+  imports: [RouterOutlet, MenubarModule, ToastModule, ButtonModule],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
 })
 export class LayoutComponent implements OnInit {
   items: MenuItem[] | undefined;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.items = [
@@ -27,5 +29,10 @@ export class LayoutComponent implements OnInit {
         command: () => this.router.navigate(['/employees']),
       },
     ];
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
