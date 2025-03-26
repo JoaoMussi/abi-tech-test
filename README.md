@@ -1,3 +1,6 @@
+> [!NOTE]
+> The deadline for this development was 25/03 and I committed some changes after it to make minor improvements. To validate what was done before the deadline, consider implementations made before commit `feat: adding new fields to employee registration (a8d0015a245925af1433c662ea4f208f31a4476e)`
+
 # Employees Manager (AB InBev Tech Test)
 
 This project is a full-stack employee management system developed as a technical test for AB InBev. It includes a frontend built with Angular, a backend built with .NET, and a PostgreSQL database running in Docker.
