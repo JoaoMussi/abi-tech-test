@@ -66,6 +66,32 @@
     </p-message>
   </div>
 
+  <div
+    *ngIf="!editMode && employeeForm.controls.password"
+    class="items-center gap-4 mb-5"
+  >
+    <label for="password" class="font-semibold">Password</label>
+    <p-password
+      id="password"
+      formControlName="password"
+      [feedback]="false"
+      fluid
+      autocomplete="off"
+      [toggleMask]="true"
+    />
+    <p-message
+      *ngIf="
+        employeeForm.controls.password.touched &&
+        employeeForm.controls.password.getError('required')
+      "
+      severity="error"
+      variant="simple"
+      size="small"
+    >
+      Password is required
+    </p-message>
+  </div>
+
   <div class="items-center gap-4 mb-5">
     <label for="documentCode" class="font-semibold">Document Code</label>
     <input

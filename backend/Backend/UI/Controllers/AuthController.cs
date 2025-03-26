@@ -21,7 +21,7 @@ public class AuthController : ControllerBase
         if (!success)
             return BadRequest("Employee already exists with this email");
 
-        return Ok("User registered successfully");
+        return Ok();
     }
 
     [HttpPost("login")]

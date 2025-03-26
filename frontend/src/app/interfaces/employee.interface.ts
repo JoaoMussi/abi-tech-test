@@ -8,4 +8,5 @@ export interface Employee {
   managerName?: string;
   birthDate: Date;
   phone: string;
+  password?: string;
 }

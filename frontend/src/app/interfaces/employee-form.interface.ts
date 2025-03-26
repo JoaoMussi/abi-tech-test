@@ -10,4 +10,5 @@ export interface EmployeeForm {
   managerName: FormControl<string | null>;
   birthDate: FormControl<Date | null>;
   phone: FormControl<string | null>;
+  password?: FormControl<string | null>;
 }

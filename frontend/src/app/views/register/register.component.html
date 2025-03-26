@@ -1,0 +1,32 @@
+<div class="flex flex-col gap-5 w-full min-h-dvh items-center justify-center my-10">
+  <div class="flex flex-col items-center gap-8">
+    <p class="text-5xl">Employee Management</p>
+    <p class="text-2xl">
+      Insert your information to register in the application
+    </p>
+  </div>
+  <p-card
+    class="flex flex-col w-full items-center"
+    [style]="{ width: '30rem' }"
+  >
+    <app-employee-form
+      [employeeForm]="registerForm"
+      [editMode]="false"
+    ></app-employee-form>
+
+    <div class="flex w-full justify-between">
+      <p-button
+        label="Login"
+        aria-label="Login"
+        variant="outlined"
+        (click)="login()"
+      />
+      <p-button
+        label="Register"
+        aria-label="Register"
+        [loading]="loading()"
+        (click)="register()"
+      />
+    </div>
+  </p-card>
+</div>

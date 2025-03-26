@@ -36,6 +36,7 @@ export class EmployeeCreateModalComponent {
         minAgeValidator(),
       ]),
       phone: new FormControl<string | null>(null, Validators.required),
+      password: new FormControl<string | null>(null, Validators.required),
     });
   }
 

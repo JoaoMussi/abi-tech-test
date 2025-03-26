@@ -8,8 +8,7 @@
 >
   <app-employee-form
     [employeeForm]="employeeForm"
-    [visible]="visible"
-    (visibleChange)="visibleChange.emit(false)"
+    [editMode]="false"
   ></app-employee-form>
 
   <div class="flex justify-end gap-2">
